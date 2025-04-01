@@ -242,7 +242,7 @@ const EngineeringServices = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {language === 'el' ? 'Γιάννης Μαυρίδης, Διευθύνων Σύμβουλος' : 'Ioannis Mavridis, CEO'}
+                {language === 'el' ? 'Ιωάννης Μαυρίδης, Διευθύνων Σύμβουλος' : 'Giannis Mavridis, CEO'}
               </h2>
             </motion.div>
 
@@ -449,7 +449,7 @@ const EngineeringServices = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold mb-6">
-                {language === 'el' ? 'Γιάννης Μαυρίδης - Εμπειρία' : 'Giannis Mavridis - Experience'}
+                {language === 'el' ? 'Ιωάννης Μαυρίδης, Διευθύνων Σύμβουλος' : 'Giannis Mavridis, CEO'}
               </h3>
 
               <ul className="space-y-4">
