@@ -248,9 +248,9 @@ interface ProjectImages {
 const certifications = {
   el: {
     column1: [
-      "Πιστοποιημένος ελεγκτής προσεισμικού ελέγχου",  // Προσθήκη στην πρώτη θέση
-      "Πιστοποιημένος ελεγκτής ελέγχου προσβασιμότητας",  // Προσθήκη στη δεύτερη θέση
-      "Πιστοποιημένος Εκτιμητής Ακινήτων (REV)",
+      "Πιστοποιημένος ελεγκτής προσεισμικού ελέγχου",
+      "Πιστοποιημένος ελεγκτής ελέγχου προσβασιμότητας",
+      "Πιστοποιημένη Εκτιμήτρια Ακινήτων (REV)",
       "Πιστοποιημένος Ενεργειακός Επιθεωρητής",
       "Πιστοποιημένος Επιθεωρητής Δόμησης",
       "Πιστοποιημένος Εκτιμητής Μηχανολογικών Εγκαταστάσεων",
@@ -272,8 +272,8 @@ const certifications = {
   },
   en: {
     column1: [
-      "Certified Pre-earthquake Inspector",  // Added at first position
-      "Certified Accessibility Inspector",   // Added at second position
+      "Certified Pre-earthquake Inspector",
+      "Certified Accessibility Inspector",
       "Certified Real Estate Appraiser (REV)",
       "Certified Energy Inspector",
       "Certified Building Inspector",
@@ -1320,22 +1320,38 @@ const Home = () => {
                 {language === 'el' 
                   ? (
                     <>
-                      <span className="block mb-2">
-                        <span className="font-bold text-white">Ιωάννης Α. Μαυρίδης</span>
-                        <span className="mx-52"></span>
-                        <span className="font-bold text-white">Νίκη Α. Μαυρίδου</span>
-                      </span>
-                      Διπλ. Πολιτικός Μηχανικός (ισοτιμία Ε.Μ.Π.)     •     Αρχιτέκτων Μηχανικός Α.Π.Θ. (Πιστ. REV,TEGoVA)
+                      <div className="flex flex-col items-center mb-4 max-w-5xl mx-auto">
+                        <span className="flex justify-between w-full mb-2">
+                          <div className="w-[45%] text-center">
+                            <span className="font-bold text-white">Ιωάννης Α. Μαυρίδης</span>
+                            <br />
+                            <span className="text-center">Διπλ. Πολιτικός Μηχανικός<br/>(ισοτιμία Ε.Μ.Π.)</span>
+                          </div>
+                          <div className="w-[45%] text-center">
+                            <span className="font-bold text-white">Νίκη Α. Μαυρίδου</span>
+                            <br />
+                            <span className="text-center">Αρχιτέκτων Μηχανικός Α.Π.Θ.<br/>(Πιστ. REV,TEGoVA)</span>
+                          </div>
+                        </span>
+                      </div>
                     </>
                   )
                   : (
                     <>
-                      <span className="block mb-2">
-                        <span className="font-bold text-white">Ioannis A. Mavridis</span>
-                        <span className="mx-44"></span>
-                        <span className="font-bold text-white">Niki A. Mavridou</span>
-                      </span>
-                      Civil Engineer (NTUA eq.) • Architect Engineer AUTH (REV Cert. ,TEGoVA)
+                      <div className="flex flex-col items-center mb-4 max-w-5xl mx-auto">
+                        <span className="flex justify-between w-full mb-2">
+                          <div className="w-[45%] text-center">
+                            <span className="font-bold text-white">Ioannis A. Mavridis</span>
+                            <br />
+                            <span className="text-center">Civil Engineer<br/>(NTUA eq.)</span>
+                          </div>
+                          <div className="w-[45%] text-center">
+                            <span className="font-bold text-white">Niki A. Mavridou</span>
+                            <br />
+                            <span className="text-center">Architect Engineer AUTH<br/>(REV Cert. ,TEGoVA)</span>
+                          </div>
+                        </span>
+                      </div>
                     </>
                   )}
               </div>
@@ -1399,21 +1415,6 @@ const Home = () => {
                   </ul>
                 </motion.div>
               </div>
-
-              {/* Contact Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="mt-12 text-center"
-              >
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold"
-                >
-                  {language === 'el' ? 'Αίτημα Επικοινωνίας' : 'Contact Request'}
-                </Link>
-              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -1734,9 +1735,9 @@ const Home = () => {
             </motion.div>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <motion.div 
-            className="text-center mt-12"
+            className="text-center mt-12 space-y-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -1748,6 +1749,16 @@ const Home = () => {
               {language === 'el' ? 'Μάθετε περισσότερα για εμάς' : 'Learn more about us'}
               <ArrowRight className="w-5 h-5" />
             </Link>
+            
+            <div>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors mt-4"
+              >
+                {language === 'el' ? 'Αίτημα Επικοινωνίας' : 'Contact Request'}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

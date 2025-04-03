@@ -402,15 +402,49 @@ const Contact = () => {
               </motion.button>
             </form>
 
-            {/* Alternative Contact Text */}
-            <p className="mt-6 text-gray-600 text-center">
-              {language === 'el' 
-                ? 'Εναλλακτικά, μπορείτε να επικοινωνήσετε μέσω email στις διευθύνσεις: ' 
-                : 'Alternatively, you can contact us via email at: '}
-              <a href="mailto:ymavridis@gmail.com" className="text-blue-600 hover:text-blue-800">ymavridis@gmail.com</a>
-              {language === 'el' ? ' και ' : ' and '}
-              <a href="mailto:niki_mavridou@yahoo.gr" className="text-blue-600 hover:text-blue-800">niki_mavridou@yahoo.gr</a>.
-            </p>
+            {/* Alternative Contact Info */}
+            <motion.div 
+              className="mt-8 p-6 bg-blue-50 border border-blue-100 rounded-lg shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="flex items-start gap-3">
+                <Mail className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-800 mb-2">
+                    {language === 'el' 
+                      ? 'Εναλλακτικοί Τρόποι Επικοινωνίας'
+                      : 'Alternative Contact Methods'}
+                  </h3>
+                  <p className="text-gray-700">
+                    {language === 'el'
+                      ? 'Μπορείτε να επικοινωνήσετε απευθείας μέσω email στις παρακάτω διευθύνσεις:'
+                      : 'You can contact us directly via email at the following addresses:'}
+                  </p>
+                  <div className="mt-3 space-y-2">
+                    <a 
+                      href="mailto:ymavridis@gmail.com" 
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        ymavridis@gmail.com
+                      </span>
+                    </a>
+                    <a 
+                      href="mailto:niki_mavridou@yahoo.gr" 
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        niki_mavridou@yahoo.gr
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
