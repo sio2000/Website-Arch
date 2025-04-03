@@ -248,7 +248,13 @@ interface ProjectImages {
 const certifications = {
   el: {
     column1: [
-      'Πιστοποιημένος Ελεγκτής Δόμησης. Για έργα της μεγαλύτερης κατηγορίας.',
+      "Πιστοποιημένος ελεγκτής προσεισμικού ελέγχου",  // Προσθήκη στην πρώτη θέση
+      "Πιστοποιημένος ελεγκτής ελέγχου προσβασιμότητας",  // Προσθήκη στη δεύτερη θέση
+      "Πιστοποιημένος Εκτιμητής Ακινήτων (REV)",
+      "Πιστοποιημένος Ενεργειακός Επιθεωρητής",
+      "Πιστοποιημένος Επιθεωρητής Δόμησης",
+      "Πιστοποιημένος Εκτιμητής Μηχανολογικών Εγκαταστάσεων",
+      "Πιστοποιημένος Ελεγκτής Κατάταξης Καταλυμάτων (Star Rating)",
       'Πιστοποιημένος Επιθεωρητής Καταλυμάτων. Για κατηγοριοποίηση ξενοδοχειακών μονάδων (αστεροποίηση) και ενοικιαζόμενων δωματίων (κλειδιά) από την <strong>TÜV Austria</strong>.',
       'Πιστοποίηση Επαγγελματικής Αναγνώρισης <strong>REV</strong> της <strong>TEGoVA</strong>.',
       'Πιστοποίηση <strong>ISO/IEC 17024</strong>.',
@@ -266,18 +272,32 @@ const certifications = {
   },
   en: {
     column1: [
+      "Certified Pre-earthquake Inspector",  // Added at first position
+      "Certified Accessibility Inspector",   // Added at second position
+      "Certified Real Estate Appraiser (REV)",
+      "Certified Energy Inspector",
+      "Certified Building Inspector",
+      "Certified Mechanical Installations Appraiser",
+      "Certified Accommodation Inspector for Hotel Unit Classification (Star Rating)",
       'Certified Building Inspector. For projects of the highest category.',
       'Certified Accommodation Inspector. For categorization of hotel units (star rating) and rental rooms (keys) by <strong>TÜV Austria</strong>.',
       'Professional Recognition Certification <strong>REV</strong> of <strong>TEGoVA</strong>.',
       'Certification <strong>ISO/IEC 17024</strong>.',
       'Implementation of "<strong>Energy Saving at Home</strong>" program.',
       '<strong>Expert Valuer in Real Estate Property (REV) – TEGoVA</strong>.',
-      'Certified Real Estate Appraiser, conducting valuations in accordance with European Standards.'
+      'Certified Real Estate Appraiser, conducting valuations in accordance with European Standards.',
+      'Certified Energy Inspector',
+      'Certified Mechanical Installations Appraiser',
+      'Certified Accommodation Inspector for Hotel Unit Classification (Star Rating)'
     ],
     column2: [
       '<strong>MEMBER OF PROFESSIONAL ORGANIZATIONS</strong>',
       'Specialization in <strong>Energy Studies and Inspections</strong> based on <strong>KENAK</strong>.',
       'Member of the <strong>Hellenic Valuers Association (HVA)</strong>.',
+      'Participation in <strong>TEGoVA</strong>.',
+      'Experience in <strong>Real Estate Valuations</strong>, with collaborations with various banks (Panellinia, Aspis, Agricultural, Piraeus).',
+      'Participation in <strong>TEGoVA</strong>.',
+      'Experience in <strong>Real Estate Valuations</strong>, with collaborations with various banks (Panellinia, Aspis, Agricultural, Piraeus).',
       'Participation in <strong>TEGoVA</strong>.',
       'Experience in <strong>Real Estate Valuations</strong>, with collaborations with various banks (Panellinia, Aspis, Agricultural, Piraeus).'
     ]
@@ -432,12 +452,12 @@ const Home = () => {
     project12: {
       images: [threeStorybuilding, threeStorybuilding2, threeStorybuilding3, threeStorybuilding4],
       title: {
-        el: 'Τριώροφο Κτίριο',
-        en: 'Three-story Building'
+        el: 'Αρχιτεκτονική μελέτη τριώροφου κτιρίου',
+        en: 'Architectural design of a three-story building'
       },
       description: {
-        el: 'Κατασκευή τριώροφου κτιρίου',
-        en: 'Construction of three-story building'
+        el: 'Αρχιτεκτονική μελέτη τριώροφου κτιρίου',
+        en: 'Architectural design of a three-story building'
       }
     },
     project13: {
@@ -785,7 +805,7 @@ const Home = () => {
       "Πολυώροφα Κτίρια Κατοικιών στην Κομοτηνή",
       "Velvet Skins Laser and Face Center Κομοτηνή",
       "Κατοικία στη Μαρώνεια",
-      "Τριώροφο Κτίριο",
+      "Αρχιτεκτονική μελέτη τριώροφου κτιρίου",
       "Μονοκατοικία με Στέγη",
       "Ισόγειες Παραθεριστικές Κατοικίες",
       "Κατοικία στην Αρωγή Ροδόπης",
@@ -830,7 +850,7 @@ const Home = () => {
       "Multi-storey Residential Buildings in Komotini",
       "Velvet Skins Laser and Face Center Komotini",
       "House in Maronia",
-      "Three-story Building",
+      "Architectural design of a three-story building",
       "House with Roof",
       "Construction of ground floor holiday homes",
       "Construction of a house in Arogi Rodopi",
@@ -878,7 +898,7 @@ const Home = () => {
       "Past multi storey residential projects. Komotini.",
       "Αρχιτεκτονικός σχεδιασμός, Μελέτη, Πλήρης οργάνωση χρονοδιαγράμματος & Λειτουργική υλοποίηση",
       "Μελέτη και κατασκευή κατοικίας στη Μαρώνεια",
-      "Κατασκευή τριώροφου κτιρίου",
+      "Αρχιτεκτονική μελέτη τριώροφου κτιρίου",
       "Κατασκευή μονοκατοικίας με στέγη",
       "Κατασκευή ισόγειων παραθεριστικών κατοικιών",
       "Κατασκευή κατοικίας στην Αρωγή Ροδόπης",
@@ -1300,20 +1320,28 @@ const Home = () => {
                 {language === 'el' 
                   ? (
                     <>
-                      <span className="block mb-2">Ιωάννης Α.Μαυρίδης <span className="mx-28"></span> Νίκη Α.Μαυρίδου</span>
-                      Διπλ. Πολιτικός Μηχανικός (ισοτιμία Ε.Μ.Π.) • Αρχιτέκτων Μηχανικός Α.Π.Θ. (Πιστ. REV,TEGoVA)
+                      <span className="block mb-2">
+                        <span className="font-bold text-white">Ιωάννης Α. Μαυρίδης</span>
+                        <span className="mx-52"></span>
+                        <span className="font-bold text-white">Νίκη Α. Μαυρίδου</span>
+                      </span>
+                      Διπλ. Πολιτικός Μηχανικός (ισοτιμία Ε.Μ.Π.)     •     Αρχιτέκτων Μηχανικός Α.Π.Θ. (Πιστ. REV,TEGoVA)
                     </>
                   )
                   : (
                     <>
-                      <span className="block mb-2">Ioannis A.Mavridis <span className="mx-16"></span> Niki A.Mavridou</span>
+                      <span className="block mb-2">
+                        <span className="font-bold text-white">Ioannis A. Mavridis</span>
+                        <span className="mx-44"></span>
+                        <span className="font-bold text-white">Niki A. Mavridou</span>
+                      </span>
                       Civil Engineer (NTUA eq.) • Architect Engineer AUTH (REV Cert. ,TEGoVA)
                     </>
                   )}
               </div>
 
               <motion.h1
-                className="text-4xl md:text-6xl font-bold text-white mb-16"
+                className="text-4xl md:text-6xl text-gray-100/90 mb-16 [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -1324,7 +1352,7 @@ const Home = () => {
               </motion.h1>
 
               {/* Rest of the content */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mt-8">  {/* Changed from gap-12 to gap-24 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mt-8">
                 {/* Construction Management Card */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -1371,6 +1399,21 @@ const Home = () => {
                   </ul>
                 </motion.div>
               </div>
+
+              {/* Contact Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-12 text-center"
+              >
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold"
+                >
+                  {language === 'el' ? 'Αίτημα Επικοινωνίας' : 'Contact Request'}
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -1398,8 +1441,8 @@ const Home = () => {
                 <Waves className="w-5 h-5" />
                 <span>
                   {language === 'el' 
-                    ? 'Έργα Ανάπλασης Παραλιακών ζωνών' 
-                    : 'Coastal Zone Regeneration Projects'}
+                    ? 'Έργα σε παραλιακές ζώνες' 
+                    : 'Projects in coastal zones'}
                 </span>
               </Link>
 

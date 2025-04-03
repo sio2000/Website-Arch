@@ -228,8 +228,8 @@ const CoastalZoneProjects = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           {language === 'el' 
-            ? 'Έργα Ανάπλασης Παραλιακών ζωνών'
-            : 'Coastal Zone Regeneration Projects'}
+            ? 'Έργα σε παραλιακές ζώνες'
+            : 'Projects in coastal zones'}
         </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -394,13 +394,23 @@ const Contact = () => {
 
               <motion.button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {language === 'el' ? 'Αποστολή' : 'Send Message'}
+                {language === 'el' ? 'Αποστολή' : 'Send'}
               </motion.button>
             </form>
+
+            {/* Alternative Contact Text */}
+            <p className="mt-6 text-gray-600 text-center">
+              {language === 'el' 
+                ? 'Εναλλακτικά, μπορείτε να επικοινωνήσετε μέσω email στις διευθύνσεις: ' 
+                : 'Alternatively, you can contact us via email at: '}
+              <a href="mailto:ymavridis@gmail.com" className="text-blue-600 hover:text-blue-800">ymavridis@gmail.com</a>
+              {language === 'el' ? ' και ' : ' and '}
+              <a href="mailto:niki_mavridou@yahoo.gr" className="text-blue-600 hover:text-blue-800">niki_mavridou@yahoo.gr</a>.
+            </p>
           </motion.div>
         </div>
 
