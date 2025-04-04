@@ -1368,14 +1368,9 @@ const Home = () => {
               </motion.h1>
 
               {/* Rest of the content */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mt-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-24 mt-8 px-4 md:px-0">
                 {/* Construction Management Card */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="bg-white/95 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-shadow h-[400px] overflow-y-auto custom-scrollbar w-full max-w-xl"
-                >
+                <motion.div className="bg-white/95 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-shadow h-[400px] overflow-y-auto custom-scrollbar w-full max-w-xl">
                   <h3 className="text-2xl font-semibold mb-6 text-gray-800">
                     {language === 'el' ? 'Διαχείριση Εργοταξίου & Έργων' : 'Construction & Project Management'}
                   </h3>
@@ -1393,12 +1388,7 @@ const Home = () => {
                 </motion.div>
 
                 {/* Architectural Design Card */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="bg-white/95 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-shadow h-[400px] overflow-y-auto custom-scrollbar w-full max-w-xl"
-                >
+                <motion.div className="bg-white/95 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-shadow h-[400px] overflow-y-auto custom-scrollbar w-full max-w-xl">
                   <h3 className="text-2xl font-semibold mb-6 text-gray-800">
                     {language === 'el' ? 'Αρχιτεκτονικός Σχεδιασμός & Άδειες' : 'Architectural Design & Permits'}
                   </h3>
@@ -1415,6 +1405,23 @@ const Home = () => {
                   </ul>
                 </motion.div>
               </div>
+
+              {/* Contact Button */}
+              <motion.div 
+                className="text-center mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 bg-salmon text-white px-8 py-3 rounded-lg hover:bg-[#E9967A] transition-colors"
+                >
+                  {language === 'el' ? 'Αίτημα Επικοινωνίας' : 'Contact Request'}
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -1749,11 +1756,11 @@ const Home = () => {
               {language === 'el' ? 'Μάθετε περισσότερα για εμάς' : 'Learn more about us'}
               <ArrowRight className="w-5 h-5" />
             </Link>
-            
+
             <div>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors mt-4"
+                className="inline-flex items-center gap-2 bg-salmon text-white px-8 py-3 rounded-lg hover:bg-[#E9967A] transition-colors mt-4"
               >
                 {language === 'el' ? 'Αίτημα Επικοινωνίας' : 'Contact Request'}
                 <ArrowRight className="w-5 h-5" />
