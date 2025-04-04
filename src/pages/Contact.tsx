@@ -425,7 +425,7 @@ const Contact = () => {
                   <div className="mt-3 space-y-2">
                     <a 
                       href="mailto:ymavridis@gmail.com" 
-                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium text-lg"
                     >
                       <span className="flex items-center gap-2">
                         <Mail className="h-4 w-4" />
@@ -434,7 +434,7 @@ const Contact = () => {
                     </a>
                     <a 
                       href="mailto:niki_mavridou@yahoo.gr" 
-                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium text-lg"
                     >
                       <span className="flex items-center gap-2">
                         <Mail className="h-4 w-4" />
