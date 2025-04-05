@@ -319,11 +319,16 @@ const Home = () => {
       ? 'IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες Κομοτηνής'
       : 'IN-MAVRIDIS - Architectural Office & Technical Services Komotini';
 
-    // Προσθήκη CSS μόνο για την απόκρυψη των συγκεκριμένων καρτών στις κινητές συσκευές
+    // Προσθήκη συγκεκριμένου CSS για να αποκρύψουμε τις κάρτες στις κινητές συσκευές
     const mobileCss = `
       @media screen and (max-width: 640px) {
-        .hero-card-construction-management,
-        .hero-card-architectural-design {
+        /* Απόκρυψη κάρτας Διαχείριση Εργοταξίου & Έργων */
+        .hide-on-mobile-construction {
+          display: none !important;
+        }
+        
+        /* Απόκρυψη κάρτας Αρχιτεκτονικός Σχεδιασμός & Άδειες */
+        .hide-on-mobile-architectural {
           display: none !important;
         }
       }
