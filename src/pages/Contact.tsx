@@ -27,28 +27,50 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
   useEffect(() => {
-    // Ορισμός title και meta description για SEO
+    // SEO - Dynamic title and meta description
     document.title = language === 'el' 
-      ? 'Επικοινωνία | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες στην Κομοτηνή'
-      : 'Contact | IN-MAVRIDIS - Architectural Office & Technical Services in Komotini';
-    
+      ? 'Επικοινωνία | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Contact | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', language === 'el'
-        ? 'Επικοινωνήστε με το γραφείο IN-MAVRIDIS στην Κομοτηνή. Αρχιτεκτονικές μελέτες, κατασκευές, ανακαινίσεις και τεχνικές υπηρεσίες. Τηλέφωνο: 2531034781'
-        : 'Contact IN-MAVRIDIS office in Komotini, Greece. Architectural studies, construction, renovations and technical services. Phone: +30 2531034781'
+        ? 'Επικοινωνήστε με το γραφείο IN-MAVRIDIS στην Κομοτηνή. Διεύθυνση: Θάσου 1, Τηλέφωνο: 2531034781. Αρχιτεκτονικές μελέτες, κατασκευές και τεχνικές υπηρεσίες.'
+        : 'Contact IN-MAVRIDIS office in Komotini. Address: 1 Thasou St, Phone: +30 2531034781. Architectural studies, construction and technical services.'
       );
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = language === 'el'
-        ? 'Επικοινωνήστε με το γραφείο IN-MAVRIDIS στην Κομοτηνή. Αρχιτεκτονικές μελέτες, κατασκευές, ανακαινίσεις και τεχνικές υπηρεσίες. Τηλέφωνο: 2531034781'
-        : 'Contact IN-MAVRIDIS office in Komotini, Greece. Architectural studies, construction, renovations and technical services. Phone: +30 2531034781';
-      document.head.appendChild(meta);
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'επικοινωνία, αρχιτεκτονικό γραφείο, Κομοτηνή, διεύθυνση, τηλέφωνο, email, χάρτης, ωράριο λειτουργίας'
+        : 'contact, architectural office, Komotini, address, phone, email, map, business hours'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Επικοινωνία | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο'
+        : 'Contact | IN-MAVRIDIS - Architectural Office'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Βρείτε τα στοιχεία επικοινωνίας και την τοποθεσία του γραφείου μας στην Κομοτηνή. Επικοινωνήστε μαζί μας για κάθε αρχιτεκτονικό ή τεχνικό έργο.'
+        : 'Find our contact details and office location in Komotini. Contact us for any architectural or technical project.'
+      );
     }
   }, [language]);
 
@@ -425,7 +447,7 @@ const Contact = () => {
                   <div className="mt-3 space-y-2">
                     <a 
                       href="mailto:ymavridis@gmail.com" 
-                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium text-lg"
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
                     >
                       <span className="flex items-center gap-2">
                         <Mail className="h-4 w-4" />
@@ -434,7 +456,7 @@ const Contact = () => {
                     </a>
                     <a 
                       href="mailto:niki_mavridou@yahoo.gr" 
-                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium text-lg"
+                      className="block text-blue-600 hover:text-blue-800 transition-colors font-medium"
                     >
                       <span className="flex items-center gap-2">
                         <Mail className="h-4 w-4" />

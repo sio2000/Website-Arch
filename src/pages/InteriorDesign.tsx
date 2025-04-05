@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -8,6 +8,49 @@ import { projects } from '../data/projects';
 const InteriorDesign = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Εσωτερική Διακόσμηση | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Interior Design | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Υπηρεσίες εσωτερικής διακόσμησης από το γραφείο IN-MAVRIDIS στην Κομοτηνή. Δημιουργικός σχεδιασμός εσωτερικών χώρων, επιλογή επίπλων, χρωμάτων και υλικών για κατοικίες και επαγγελματικούς χώρους.'
+        : 'Interior design services by IN-MAVRIDIS office in Komotini. Creative interior space design, furniture selection, colors and materials for residences and commercial spaces.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'εσωτερική διακόσμηση, σχεδιασμός εσωτερικών χώρων, διακόσμηση σπιτιού, επαγγελματικοί χώροι, έπιπλα, χρώματα, υλικά, Κομοτηνή, αρχιτεκτονικό γραφείο'
+        : 'interior design, interior space design, home decoration, commercial spaces, furniture, colors, materials, Komotini, architectural office'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Εσωτερική Διακόσμηση | IN-MAVRIDIS - Δημιουργικές Λύσεις για τον Χώρο σας'
+        : 'Interior Design | IN-MAVRIDIS - Creative Solutions for Your Space'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Μεταμορφώστε τον χώρο σας με τις υπηρεσίες εσωτερικής διακόσμησης του IN-MAVRIDIS. Σύγχρονες, λειτουργικές και αισθητικά άρτιες λύσεις που ανταποκρίνονται στις ανάγκες και το στυλ σας.'
+        : 'Transform your space with IN-MAVRIDIS interior design services. Modern, functional and aesthetically excellent solutions that respond to your needs and style.'
+      );
+    }
+  }, [language]);
 
   // Φιλτράρισμα των projects για την κατηγορία interior
   const interiorProjects = projects.filter(project => {

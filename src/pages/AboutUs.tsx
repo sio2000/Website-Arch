@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
+import { useLanguage } from '../context/LanguageContext';
 import constructionImage from '../assets/images/construction.jpg';
 import buildingImage from '../assets/images/building.jpg';
 import architectureImage from '../assets/images/pr1.jpg';
@@ -9,6 +10,22 @@ import officeImage from '../assets/images/office.jpg';
 
 const AboutUs = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Σχετικά με Εμάς | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες'
+      : 'About Us | IN-MAVRIDIS - Architectural Office & Technical Services';
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Το γραφείο IN-MAVRIDIS προσφέρει υψηλής ποιότητας αρχιτεκτονικές και τεχνικές υπηρεσίες στην Κομοτηνή και τη Θράκη. 40+ χρόνια εμπειρίας στον κατασκευαστικό τομέα.'
+        : 'IN-MAVRIDIS office offers high-quality architectural and technical services in Komotini and Thrace. 40+ years of experience in the construction sector.'
+      );
+    }
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -21,7 +38,7 @@ const AboutUs = () => {
         </p>
         <img src={realEstateImage} alt="Real Estate" className="w-full h-64 object-cover rounded-lg mb-8 shadow-lg" />
 
-        <h2 className="text-3xl font-bold mb-4 text-blue-500 text-center">{t('aboutUs.subTitle')}</h2>
+        <h2 className="text-3xl font-bold mb-4 text-blue-500">{t('aboutUs.subTitle')}</h2>
         <p className="text-lg text-center mb-8 text-gray-700">
           {t('aboutUs.details')}
         </p>
@@ -29,7 +46,7 @@ const AboutUs = () => {
 
         <h2 className="text-3xl font-bold mb-4 text-blue-500">{t('aboutUs.touristAttractions.title')}</h2>
         <ul className="list-disc list-inside mb-8 text-gray-700">
-          {t('aboutUs.touristAttractions.items').map((item, index) => (
+          {(t('aboutUs.touristAttractions.items') as string[]).map((item: string, index: number) => (
             <li key={index}>{item}</li>
           ))}
         </ul>
@@ -43,14 +60,14 @@ const AboutUs = () => {
 
         <h3 className="text-2xl font-bold mb-4 text-blue-500">{t('aboutUs.constructionServicesList.title')}</h3>
         <ul className="list-disc list-inside mb-8 text-gray-700">
-          {t('aboutUs.constructionServicesList.items').map((service, index) => (
+          {(t('aboutUs.constructionServicesList.items') as string[]).map((service: string, index: number) => (
             <li key={index}>{service}</li>
           ))}
         </ul>
 
         <h2 className="text-3xl font-bold mb-4 text-blue-500">{t('aboutUs.certifications.title')}</h2>
         <ul className="list-disc list-inside mb-8 text-gray-700">
-          {t('aboutUs.certifications.items').map((certification, index) => (
+          {(t('aboutUs.certifications.items') as string[]).map((certification: string, index: number) => (
             <li key={index}>{certification}</li>
           ))}
         </ul>

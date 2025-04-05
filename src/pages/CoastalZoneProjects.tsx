@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from '../hooks/useTranslation';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -53,6 +55,7 @@ import MaroniaPlatanitis5 from '../assets/images/Maronia_Platanitis_beach5.jpg';
 
 const CoastalZoneProjects = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -218,6 +221,49 @@ const CoastalZoneProjects = () => {
   // Add console.log to debug
   console.log('Projects:', projects);
   console.log('Selected Images:', selectedImages);
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Έργα Παραλιακής Ζώνης | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Coastal Zone Projects | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Έργα παραλιακής ζώνης του γραφείου IN-MAVRIDIS. Τουριστικές εγκαταστάσεις, παραθαλάσσιες κατοικίες, ξενοδοχεία και παραθεριστικά συγκροτήματα στην περιοχή της Κομοτηνής και της Θράκης.'
+        : 'Coastal zone projects by IN-MAVRIDIS office. Tourist facilities, beachfront residences, hotels and vacation complexes in the region of Komotini and Thrace.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'παραλιακά έργα, παραθαλάσσιες κατοικίες, τουριστικές εγκαταστάσεις, ξενοδοχεία, παραθεριστικά συγκροτήματα, Κομοτηνή, Θράκη, Μαρώνεια, Φανάρι'
+        : 'coastal projects, beachfront residences, tourist facilities, hotels, vacation complexes, Komotini, Thrace, Maronia, Fanari'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Έργα Παραλιακής Ζώνης | IN-MAVRIDIS - Αρχιτεκτονικές Λύσεις για Παραθαλάσσιες Περιοχές'
+        : 'Coastal Zone Projects | IN-MAVRIDIS - Architectural Solutions for Seaside Areas'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ανακαλύψτε το χαρτοφυλάκιο παραλιακών έργων του γραφείου μας. Σύγχρονες κατασκευές που συνδυάζουν την αισθητική με τη λειτουργικότητα σε μοναδικά παραθαλάσσια τοπία.'
+        : 'Discover our office\'s coastal projects portfolio. Modern constructions that combine aesthetics with functionality in unique seaside landscapes.'
+      );
+    }
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">

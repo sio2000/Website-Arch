@@ -12,20 +12,23 @@ export type TranslationKeys = NestedKeyOf<typeof translations.el>;
 export const useTranslation = () => {
   const { language } = useLanguage();
 
-  const t = (key: TranslationKeys) => {
+  const t = (key: string): string | string[] => {
     const keys = key.split('.');
-    let value: any = translations[language];
+    let translation: any = translations[language];
     
-    for (const k of keys) {
-      if (value[k] === undefined) {
-        console.warn(`Translation key "${key}" not found`);
-        return key;
+    try {
+      for (const k of keys) {
+        if (translation[k] === undefined) {
+          console.warn(`Translation key "${key}" not found`);
+          return key.split('.').pop() || key;
+        }
+        translation = translation[k];
       }
-      value = value[k];
+      return translation;
+    } catch (error) {
+      console.warn(`Error accessing translation for key "${key}"`);
+      return key.split('.').pop() || key;
     }
-    
-    console.log(`Translation for key "${key}":`, value);
-    return value;
   };
 
   return { t };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight, X, Building2, Ruler, Building, Award, CheckCircle2, Users, Phone, Mail, MapPin, Clock, Waves, Store } from 'lucide-react';
@@ -312,6 +312,117 @@ const Home = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες Κομοτηνής'
+      : 'IN-MAVRIDIS - Architectural Office & Technical Services Komotini';
+
+    // Το CSS για διόρθωση της διάταξης στις κινητές συσκευές
+    const mobileCss = `
+      @media screen and (max-width: 640px) {
+        /* Διόρθωση του hero section για mobile */
+        .hero-content {
+          width: 100%;
+          padding: 0 16px;
+        }
+        
+        /* Διορθώσεις κουμπιών για να μην επικαλύπτονται */
+        .project-navigation {
+          padding: 0 4px !important;
+        }
+        
+        .project-navigation button {
+          transform: scale(0.9);
+          margin: 0 4px;
+        }
+        
+        /* Διορθώσεις για τις κάρτες έργων σε mobile */
+        .project-card-container {
+          padding: 0 12px;
+        }
+        
+        .project-card {
+          margin-bottom: 16px;
+        }
+        
+        /* Διορθώσεις για τα sliders σε mobile */
+        .slick-prev, .slick-next {
+          z-index: 10;
+          width: 30px !important;
+          height: 30px !important;
+        }
+        
+        .slick-prev {
+          left: 5px !important;
+        }
+        
+        .slick-next {
+          right: 5px !important;
+        }
+        
+        /* Κάθετη διάταξη για mobile */
+        .mobile-stack {
+          flex-direction: column !important;
+        }
+        
+        .mobile-stack > * {
+          width: 100% !important;
+          margin-bottom: 16px;
+        }
+        
+        /* Διόρθωση για τις absolute positioned navigation controls */
+        .absolute.inset-0 {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 8px;
+        }
+        
+        /* Διορθώσεις grid στις κάρτες υπηρεσιών */
+        .services-grid {
+          display: grid;
+          grid-template-columns: 1fr !important;
+          gap: 16px;
+        }
+        
+        /* Διορθώσεις padding για κινητές συσκευές */
+        .mobile-px-small {
+          padding-left: 12px !important;
+          padding-right: 12px !important;
+        }
+        
+        /* Διορθώσεις για το contact section */
+        .contact-container > div {
+          padding: 16px !important;
+        }
+        
+        /* Διορθώσεις για το footer σε mobile */
+        .footer-section {
+          padding: 16px;
+        }
+        
+        /* ΑΠΌΚΡΥΨΗ ΣΥΓΚΕΚΡΙΜΈΝΩΝ ΚΑΡΤΏΝ ΤΟΥ HERO SECTION ΓΙΑ ΚΙΝΗΤΈΣ ΣΥΣΚΕΥΈΣ */
+        .hero-card-construction-management,
+        .hero-card-architectural-design {
+          display: none !important;
+        }
+      }
+    `;
+
+    // Δημιουργία και προσθήκη του στοιχείου <style> για τις mobile διορθώσεις
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = mobileCss;
+    document.head.appendChild(styleElement);
+
+    // Καθαρισμός κατά την αποφόρτωση του component
+    return () => {
+      if (styleElement && document.head.contains(styleElement)) {
+        document.head.removeChild(styleElement);
+      }
+    };
+  }, [language]);
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);

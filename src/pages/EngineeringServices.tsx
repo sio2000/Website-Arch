@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -22,15 +22,47 @@ const EngineeringServices = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    document.title = t('engineeringServices.title');
-    
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Υπηρεσίες Μηχανικού | IN-MAVRIDIS - Τεχνικό Γραφείο Κομοτηνής'
+      : 'Engineering Services | IN-MAVRIDIS - Technical Office Komotini';
+
+    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', language === 'el'
-        ? 'Ολοκληρωμένες υπηρεσίες μηχανικού στην Κομοτηνή. Στατικές μελέτες, ενεργειακός σχεδιασμός, επιβλέψεις έργων.'
-        : 'Comprehensive engineering services in Komotini. Structural studies, energy design, construction supervision.');
+        ? 'Ολοκληρωμένες υπηρεσίες μηχανικού στην Κομοτηνή. Στατικές μελέτες, ενεργειακός σχεδιασμός, επιβλέψεις έργων, άδειες δόμησης, πιστοποιήσεις και τεχνικές μελέτες. Εμπειρία 40+ ετών.'
+        : 'Comprehensive engineering services in Komotini. Structural studies, energy design, construction supervision, building permits, certifications and technical studies. 40+ years of experience.'
+      );
     }
-  }, [language, t]);
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'μηχανικός, στατικές μελέτες, ενεργειακός σχεδιασμός, άδειες δόμησης, πιστοποιήσεις, τεχνικές μελέτες, Κομοτηνή, επίβλεψη έργων'
+        : 'engineer, structural studies, energy design, building permits, certifications, technical studies, Komotini, construction supervision'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Υπηρεσίες Μηχανικού | IN-MAVRIDIS - Εξειδικευμένες Τεχνικές Λύσεις'
+        : 'Engineering Services | IN-MAVRIDIS - Specialized Technical Solutions'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Εξειδικευμένες υπηρεσίες μηχανικού και τεχνικές μελέτες στην Κομοτηνή. Πιστοποιημένη τεχνογνωσία και αξιόπιστες λύσεις.'
+        : 'Specialized engineering services and technical studies in Komotini. Certified expertise and reliable solutions.'
+      );
+    }
+  }, [language]);
 
   const renderBoldText = (text: string) => {
     return text.split(/(\*\*.*?\*\*)/).map((part, index) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -154,6 +154,49 @@ const WhyInterested = () => {
   };
 
   const position: [number, number] = [41.1231, 25.4017];
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Γιατί να μας επιλέξετε | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Why Choose Us | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Γιατί να επιλέξετε το γραφείο IN-MAVRIDIS; Με πάνω από 40 χρόνια εμπειρίας, εξειδίκευση στην αρχιτεκτονική, τις κατασκευές και τις ανακαινίσεις, και πιστοποιήσεις υψηλού επιπέδου, είμαστε ο ιδανικός συνεργάτης για το έργο σας.'
+        : 'Why choose IN-MAVRIDIS office? With over 40 years of experience, specialization in architecture, construction and renovations, and high-level certifications, we are the ideal partner for your project.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'αρχιτεκτονικό γραφείο, εμπειρία, πιστοποιήσεις, ποιότητα, καινοτομία, αρχιτεκτονική, κατασκευές, ανακαινίσεις, Κομοτηνή, εξυπηρέτηση πελατών'
+        : 'architectural office, experience, certifications, quality, innovation, architecture, construction, renovations, Komotini, customer service'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Γιατί να μας επιλέξετε | IN-MAVRIDIS - Η διαφορά στην ποιότητα'
+        : 'Why Choose Us | IN-MAVRIDIS - The difference in quality'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ανακαλύψτε τι κάνει το γραφείο μας ξεχωριστό. Η εμπειρία, η τεχνογνωσία και η αφοσίωσή μας στην ποιότητα και την καινοτομία μάς καθιστούν την καλύτερη επιλογή για το έργο σας.'
+        : 'Discover what makes our office special. Our experience, expertise and dedication to quality and innovation make us the best choice for your project.'
+      );
+    }
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-gray-50">

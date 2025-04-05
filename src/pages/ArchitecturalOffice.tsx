@@ -1018,24 +1018,45 @@ Maroneia, Rodopi, Μαρώνεια, Προφήτης Ηλίας Ροδόπης
   };
 
   useEffect(() => {
-    // Ορισμός title και meta description για SEO
+    // SEO - Dynamic title and meta description
     document.title = language === 'el' 
-      ? 'Αρχιτεκτονικό Γραφείο | IN-MAVRIDIS - Σχεδιασμός, Μελέτες & Κατασκευές στην Κομοτηνή'
-      : 'Architectural Office | IN-MAVRIDIS - Design, Studies & Construction in Komotini';
-    
+      ? 'Αρχιτεκτονικό Γραφείο | IN-MAVRIDIS - Κομοτηνή'
+      : 'Architectural Office | IN-MAVRIDIS - Komotini';
+
+    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', language === 'el'
-        ? 'Ολοκληρωμένες αρχιτεκτονικές υπηρεσίες στην Κομοτηνή. Αρχιτεκτονικός σχεδιασμός, μελέτες, κατασκευές, ανακαινίσεις και εσωτερική διακόσμηση. Εμπειρία 17+ ετών στον κλάδο.'
-        : 'Comprehensive architectural services in Komotini, Greece. Architectural design, studies, construction, renovations and interior design. 17+ years of industry experience.'
+        ? 'Το αρχιτεκτονικό γραφείο IN-MAVRIDIS στην Κομοτηνή προσφέρει ολοκληρωμένες υπηρεσίες αρχιτεκτονικού σχεδιασμού, μελέτης και επίβλεψης έργων. Εξειδίκευση στον αρχιτεκτονικό σχεδιασμό, κατοικιών, επαγγελματικών χώρων και εσωτερική διακόσμηση.'
+        : 'IN-MAVRIDIS architectural office in Komotini offers comprehensive architectural design, study and project supervision services. Specialization in architectural design, residences, professional spaces and interior decoration.'
       );
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = language === 'el'
-        ? 'Ολοκληρωμένες αρχιτεκτονικές υπηρεσίες στην Κομοτηνή. Αρχιτεκτονικός σχεδιασμός, μελέτες, κατασκευές, ανακαινίσεις και εσωτερική διακόσμηση. Εμπειρία 17+ ετών στον κλάδο.'
-        : 'Comprehensive architectural services in Komotini, Greece. Architectural design, studies, construction, renovations and interior design. 17+ years of industry experience.';
-      document.head.appendChild(meta);
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'αρχιτεκτονικό γραφείο, αρχιτεκτονικός σχεδιασμός, μελέτες, επίβλεψη έργων, κατοικίες, επαγγελματικοί χώροι, εσωτερική διακόσμηση, Κομοτηνή, Θράκη'
+        : 'architectural office, architectural design, studies, project supervision, residences, commercial spaces, interior decoration, Komotini, Thrace'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Αρχιτεκτονικό Γραφείο | IN-MAVRIDIS - Δημιουργικές Λύσεις Σχεδιασμού'
+        : 'Architectural Office | IN-MAVRIDIS - Creative Design Solutions'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Το αρχιτεκτονικό μας γραφείο συνδυάζει τη δημιουργικότητα με την τεχνική αρτιότητα για να προσφέρει πρωτότυπες και λειτουργικές λύσεις σχεδιασμού που ξεπερνούν τις προσδοκίες των πελατών μας.'
+        : 'Our architectural office combines creativity with technical excellence to offer original and functional design solutions that exceed our clients\' expectations.'
+      );
     }
   }, [language]);
 

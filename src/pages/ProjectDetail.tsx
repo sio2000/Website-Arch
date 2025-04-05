@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, X, ChevronRight } from 'lucide-react';
@@ -16,6 +16,68 @@ const ProjectDetail = () => {
   
   // Βρίσκουμε το project από τα projects με βάση το ID
   const project = projects.find(p => p.id.toString() === projectId);
+
+  useEffect(() => {
+    if (project) {
+      // SEO - Dynamic title and meta description based on the project
+      document.title = language === 'el' 
+        ? `${project.title.el} | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής`
+        : `${project.title.en} | IN-MAVRIDIS - Architectural Office Komotini`;
+
+      // Update meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', language === 'el'
+          ? `${project.title.el} - ${project.description.el}. Δείτε αναλυτικά το έργο από το αρχιτεκτονικό γραφείο IN-MAVRIDIS στην Κομοτηνή.`
+          : `${project.title.en} - ${project.description.en}. See the detailed project by IN-MAVRIDIS architectural office in Komotini.`
+        );
+      }
+
+      // Update meta keywords - create keywords based on project category and title
+      const metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (metaKeywords) {
+        // Create keyword array based on project properties
+        const categoryKeywords = Array.isArray(project.category)
+          ? project.category.join(', ')
+          : project.category;
+
+        const keywordsContent = language === 'el'
+          ? `${project.title.el}, ${categoryKeywords}, αρχιτεκτονικό έργο, Κομοτηνή, αρχιτεκτονικό γραφείο, IN-MAVRIDIS`
+          : `${project.title.en}, ${categoryKeywords}, architectural project, Komotini, architectural office, IN-MAVRIDIS`;
+
+        metaKeywords.setAttribute('content', keywordsContent);
+      }
+
+      // Update og:title
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', language === 'el'
+          ? `${project.title.el} | IN-MAVRIDIS - Αρχιτεκτονικό Έργο`
+          : `${project.title.en} | IN-MAVRIDIS - Architectural Project`
+        );
+      }
+
+      // Update og:description
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) {
+        ogDescription.setAttribute('content', language === 'el'
+          ? `Δείτε αναλυτικά το έργο "${project.title.el}" από το αρχιτεκτονικό γραφείο IN-MAVRIDIS. ${project.description.el}`
+          : `See the detailed project "${project.title.en}" by IN-MAVRIDIS architectural office. ${project.description.en}`
+        );
+      }
+
+      // Update og:image if project has images
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogImage && project.images.length > 0) {
+        ogImage.setAttribute('content', project.images[0]);
+      }
+    } else {
+      // Default SEO for when project is not found
+      document.title = language === 'el' 
+        ? 'Έργο | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+        : 'Project | IN-MAVRIDIS - Architectural Office Komotini';
+    }
+  }, [project, language, projectId]);
 
   if (!project) {
     return (

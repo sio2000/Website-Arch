@@ -146,24 +146,45 @@ const Blog = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // Ορισμός title και meta description για SEO
+    // SEO - Dynamic title and meta description
     document.title = language === 'el' 
-      ? 'Blog | IN-MAVRIDIS - Νέα & Άρθρα για Αρχιτεκτονική, Κατασκευές & Ανακαινίσεις'
-      : 'Blog | IN-MAVRIDIS - News & Articles about Architecture, Construction & Renovations';
-    
+      ? 'Blog | IN-MAVRIDIS - Άρθρα και Νέα Αρχιτεκτονικής'
+      : 'Blog | IN-MAVRIDIS - Architecture Articles and News';
+
+    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', language === 'el'
-        ? 'Διαβάστε τα τελευταία νέα και άρθρα για αρχιτεκτονική, κατασκευές, ανακαινίσεις, εξοικονόμηση ενέργειας και τάσεις στον κλάδο. Ενημερωθείτε για τις τελευταίες εξελίξεις στον κατασκευαστικό τομέα.'
-        : 'Read the latest news and articles about architecture, construction, renovations, energy saving and industry trends. Stay updated with the latest developments in the construction sector.'
+        ? 'Blog του IN-MAVRIDIS με άρθρα και νέα σχετικά με την αρχιτεκτονική, τις κατασκευές, τις ανακαινίσεις και την εκτίμηση ακινήτων. Χρήσιμες πληροφορίες και συμβουλές από επαγγελματίες.'
+        : 'IN-MAVRIDIS blog with articles and news about architecture, construction, renovations and real estate valuation. Useful information and advice from professionals.'
       );
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = language === 'el'
-        ? 'Διαβάστε τα τελευταία νέα και άρθρα για αρχιτεκτονική, κατασκευές, ανακαινίσεις, εξοικονόμηση ενέργειας και τάσεις στον κλάδο. Ενημερωθείτε για τις τελευταίες εξελίξεις στον κατασκευαστικό τομέα.'
-        : 'Read the latest news and articles about architecture, construction, renovations, energy saving and industry trends. Stay updated with the latest developments in the construction sector.';
-      document.head.appendChild(meta);
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'blog, αρχιτεκτονική, κατασκευές, ανακαινίσεις, εκτίμηση ακινήτων, συμβουλές, άρθρα, νέα, τάσεις σχεδιασμού, οικοδομικά υλικά'
+        : 'blog, architecture, construction, renovations, real estate valuation, tips, articles, news, design trends, building materials'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Blog | IN-MAVRIDIS - Άρθρα και Συμβουλές Αρχιτεκτονικής'
+        : 'Blog | IN-MAVRIDIS - Architecture Articles and Tips'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ενημερωθείτε για τις τελευταίες τάσεις και εξελίξεις στο χώρο της αρχιτεκτονικής και των κατασκευών. Συμβουλές από έμπειρους επαγγελματίες.'
+        : 'Stay informed about the latest trends and developments in architecture and construction. Tips from experienced professionals.'
+      );
     }
   }, [language]);
 

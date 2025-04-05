@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -30,6 +30,49 @@ const Renovations = () => {
   // Καταστάσεις για το modal
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Ανακαινίσεις | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Renovations | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Υπηρεσίες ανακαίνισης από το γραφείο IN-MAVRIDIS στην Κομοτηνή. Ολοκληρωμένες λύσεις ανακαίνισης για κατοικίες, επαγγελματικούς χώρους, κουζίνες, μπάνια και εξωτερικούς χώρους. Ποιοτικά υλικά και άρτια κατασκευή.'
+        : 'Renovation services by IN-MAVRIDIS office in Komotini. Comprehensive renovation solutions for homes, commercial spaces, kitchens, bathrooms and exterior areas. Quality materials and excellent construction.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'ανακαινίσεις, ανακαίνιση σπιτιού, ανακαίνιση μπάνιου, ανακαίνιση κουζίνας, ανακαίνιση επαγγελματικού χώρου, ανακαίνιση εξωτερικού χώρου, Κομοτηνή, αρχιτεκτονικό γραφείο'
+        : 'renovations, home renovation, bathroom renovation, kitchen renovation, commercial space renovation, exterior renovation, Komotini, architectural office'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Ανακαινίσεις | IN-MAVRIDIS - Αναβαθμίστε τον χώρο σας'
+        : 'Renovations | IN-MAVRIDIS - Upgrade your space'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ανακαλύψτε τις υπηρεσίες ανακαίνισης του γραφείου μας. Μετατρέψτε τον χώρο σας σε ένα σύγχρονο, λειτουργικό και αισθητικά άρτιο περιβάλλον με την υπογραφή των έμπειρων μηχανικών μας.'
+        : 'Discover our office\'s renovation services. Transform your space into a modern, functional and aesthetically excellent environment with the signature of our experienced engineers.'
+      );
+    }
+  }, [language]);
 
   const openModal = (image: string) => {
     setSelectedImage(image);

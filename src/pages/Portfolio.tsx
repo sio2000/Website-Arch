@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Slider from 'react-slick';
@@ -31,6 +31,49 @@ const Portfolio = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Χαρτοφυλάκιο Έργων | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Project Portfolio | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Το χαρτοφυλάκιο έργων του γραφείου IN-MAVRIDIS. Αρχιτεκτονικές μελέτες, κατασκευές, ανακαινίσεις, εσωτερική διακόσμηση και επαγγελματικοί χώροι. Ολοκληρωμένα έργα σε κατοικίες και εμπορικούς χώρους.'
+        : 'The project portfolio of IN-MAVRIDIS office. Architectural studies, constructions, renovations, interior design and professional spaces. Completed projects in residences and commercial spaces.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'χαρτοφυλάκιο έργων, αρχιτεκτονικά έργα, κατασκευές, ανακαινίσεις, εσωτερική διακόσμηση, επαγγελματικοί χώροι, κατοικίες, Κομοτηνή, προηγούμενα έργα'
+        : 'project portfolio, architectural projects, constructions, renovations, interior design, professional spaces, residences, Komotini, previous projects'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Χαρτοφυλάκιο Έργων | IN-MAVRIDIS - Αρχιτεκτονικές Δημιουργίες'
+        : 'Project Portfolio | IN-MAVRIDIS - Architectural Creations'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ανακαλύψτε το χαρτοφυλάκιο ολοκληρωμένων έργων μας. Κατοικίες, επαγγελματικοί χώροι, ανακαινίσεις και εσωτερική διακόσμηση με αισθητική αρτιότητα και λειτουργικότητα.'
+        : 'Discover our completed projects portfolio. Residences, professional spaces, renovations and interior design with aesthetic excellence and functionality.'
+      );
+    }
+  }, [language]);
 
   const categories = [
     { id: 'all', label: { el: 'Όλα', en: 'All' } },

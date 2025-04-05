@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, X, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from '../hooks/useTranslation';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -69,6 +71,8 @@ import PHYSIOanaplasis4 from '../assets/images/PHYSIOanaplasis4.jpg';
 
 const CommercialProjects = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [currentImageIndexes, setCurrentImageIndexes] = useState<{ [key: number]: number }>({});
@@ -179,18 +183,18 @@ const CommercialProjects = () => {
 
   const handlePrevImage = (projectIndex: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndexes(prev => ({
-      ...prev,
-      [projectIndex]: prev[projectIndex] > 0 ? prev[projectIndex] - 1 : projects[projectIndex].images.length - 1
-    }));
+    const images = projects[projectIndex].images;
+    const currentIndex = currentImageIndexes[projectIndex] || 0;
+    const newIndex = (currentIndex - 1 + images.length) % images.length;
+    setCurrentImageIndexes({ ...currentImageIndexes, [projectIndex]: newIndex });
   };
 
   const handleNextImage = (projectIndex: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndexes(prev => ({
-      ...prev,
-      [projectIndex]: (prev[projectIndex] || 0) < projects[projectIndex].images.length - 1 ? (prev[projectIndex] || 0) + 1 : 0
-    }));
+    const images = projects[projectIndex].images;
+    const currentIndex = currentImageIndexes[projectIndex] || 0;
+    const newIndex = (currentIndex + 1) % images.length;
+    setCurrentImageIndexes({ ...currentImageIndexes, [projectIndex]: newIndex });
   };
 
   const sliderSettings = {
@@ -202,6 +206,49 @@ const CommercialProjects = () => {
     nextArrow: <ChevronRight className="text-white" />,
     prevArrow: <ChevronLeft className="text-white" />
   };
+
+  useEffect(() => {
+    // SEO - Dynamic title and meta description
+    document.title = language === 'el' 
+      ? 'Εμπορικά Έργα | IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο Κομοτηνής'
+      : 'Commercial Projects | IN-MAVRIDIS - Architectural Office Komotini';
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', language === 'el'
+        ? 'Εμπορικά έργα του γραφείου IN-MAVRIDIS στην Κομοτηνή. Καταστήματα, εμπορικά κέντρα, γραφεία, επαγγελματικοί χώροι και επαγγελματικές εγκαταστάσεις. Σύγχρονος σχεδιασμός και αρχιτεκτονικές λύσεις.'
+        : 'Commercial projects by IN-MAVRIDIS office in Komotini. Stores, shopping centers, office spaces and professional facilities. Modern design and architectural solutions.'
+      );
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', language === 'el'
+        ? 'εμπορικά έργα, καταστήματα, εμπορικά κέντρα, επαγγελματικοί χώροι, γραφεία, αρχιτεκτονική, Κομοτηνή, επαγγελματικές εγκαταστάσεις'
+        : 'commercial projects, stores, shopping centers, professional spaces, offices, architecture, Komotini, professional facilities'
+      );
+    }
+
+    // Update og:title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', language === 'el'
+        ? 'Εμπορικά Έργα | IN-MAVRIDIS - Αρχιτεκτονικές Λύσεις για Επιχειρήσεις'
+        : 'Commercial Projects | IN-MAVRIDIS - Architectural Solutions for Businesses'
+      );
+    }
+
+    // Update og:description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', language === 'el'
+        ? 'Ανακαλύψτε το χαρτοφυλάκιο εμπορικών έργων του γραφείου μας. Σύγχρονες, λειτουργικές και αισθητικά άρτιες αρχιτεκτονικές λύσεις για κάθε επιχείρηση.'
+        : 'Discover our office\'s commercial projects portfolio. Modern, functional and aesthetically excellent architectural solutions for every business.'
+      );
+    }
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -291,8 +338,6 @@ const CommercialProjects = () => {
                       <img
                         src={image}
                         alt={`Slide ${index + 1}`}
-                        className="max-h-full max-w-full object-contain"
-                        onError={(e) => console.error('Modal image failed to load:', e)}
                       />
                     </div>
                   </div>
@@ -306,4 +351,4 @@ const CommercialProjects = () => {
   );
 };
 
-export default CommercialProjects; 
+export default CommercialProjects;
