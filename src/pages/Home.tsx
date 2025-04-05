@@ -319,32 +319,29 @@ const Home = () => {
       ? 'IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες Κομοτηνής'
       : 'IN-MAVRIDIS - Architectural Office & Technical Services Komotini';
 
-    // Προσθήκη συγκεκριμένου CSS για να αποκρύψουμε τις κάρτες στις κινητές συσκευές
-    const mobileCss = `
-      @media screen and (max-width: 640px) {
-        /* Απόκρυψη κάρτας Διαχείριση Εργοταξίου & Έργων */
-        .hide-on-mobile-construction {
-          display: none !important;
+    // Κώδικας που θα εκτελείται μετά την αρχική απόδοση για να εντοπίσει 
+    // και να αποκρύψει την κάρτα "Διαχείριση Εργοταξίου & Έργων"
+    const hideConstructionCard = () => {
+      // Εντοπίζουμε όλες τις επικεφαλίδες h3 στο έγγραφο
+      const headers = document.querySelectorAll('h3');
+      
+      // Αναζητούμε την επικεφαλίδα με το συγκεκριμένο κείμενο
+      headers.forEach(header => {
+        if (header.textContent?.includes('Διαχείριση Εργοταξίου & Έργων')) {
+          // Βρίσκουμε το γονικό div (κάρτα) και προσθέτουμε τις κλάσεις απόκρυψης
+          const card = header.closest('div[class*="rounded"]');
+          if (card) {
+            card.classList.add('hidden', 'md:block'); // Απόκρυψη για κινητά, εμφάνιση για tablet/desktop
+          }
         }
-        
-        /* Απόκρυψη κάρτας Αρχιτεκτονικός Σχεδιασμός & Άδειες */
-        .hide-on-mobile-architectural {
-          display: none !important;
-        }
-      }
-    `;
-
-    // Δημιουργία και προσθήκη του στοιχείου <style>
-    const styleElement = document.createElement('style');
-    styleElement.innerHTML = mobileCss;
-    document.head.appendChild(styleElement);
-
-    // Καθαρισμός κατά την αποφόρτωση του component
-    return () => {
-      if (styleElement && document.head.contains(styleElement)) {
-        document.head.removeChild(styleElement);
-      }
+      });
     };
+
+    // Εκτελούμε τη συνάρτηση μετά την απόδοση της σελίδας
+    const timer = setTimeout(hideConstructionCard, 500);
+    
+    // Καθαρισμός του timer όταν το component unmounts
+    return () => clearTimeout(timer);
   }, [language]);
 
   const handleImageClick = (image: string) => {
