@@ -319,91 +319,9 @@ const Home = () => {
       ? 'IN-MAVRIDIS - Αρχιτεκτονικό Γραφείο & Τεχνικές Υπηρεσίες Κομοτηνής'
       : 'IN-MAVRIDIS - Architectural Office & Technical Services Komotini';
 
-    // Το CSS για διόρθωση της διάταξης στις κινητές συσκευές
+    // Προσθήκη CSS μόνο για την απόκρυψη των συγκεκριμένων καρτών στις κινητές συσκευές
     const mobileCss = `
       @media screen and (max-width: 640px) {
-        /* Διόρθωση του hero section για mobile */
-        .hero-content {
-          width: 100%;
-          padding: 0 16px;
-        }
-        
-        /* Διορθώσεις κουμπιών για να μην επικαλύπτονται */
-        .project-navigation {
-          padding: 0 4px !important;
-        }
-        
-        .project-navigation button {
-          transform: scale(0.9);
-          margin: 0 4px;
-        }
-        
-        /* Διορθώσεις για τις κάρτες έργων σε mobile */
-        .project-card-container {
-          padding: 0 12px;
-        }
-        
-        .project-card {
-          margin-bottom: 16px;
-        }
-        
-        /* Διορθώσεις για τα sliders σε mobile */
-        .slick-prev, .slick-next {
-          z-index: 10;
-          width: 30px !important;
-          height: 30px !important;
-        }
-        
-        .slick-prev {
-          left: 5px !important;
-        }
-        
-        .slick-next {
-          right: 5px !important;
-        }
-        
-        /* Κάθετη διάταξη για mobile */
-        .mobile-stack {
-          flex-direction: column !important;
-        }
-        
-        .mobile-stack > * {
-          width: 100% !important;
-          margin-bottom: 16px;
-        }
-        
-        /* Διόρθωση για τις absolute positioned navigation controls */
-        .absolute.inset-0 {
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 8px;
-        }
-        
-        /* Διορθώσεις grid στις κάρτες υπηρεσιών */
-        .services-grid {
-          display: grid;
-          grid-template-columns: 1fr !important;
-          gap: 16px;
-        }
-        
-        /* Διορθώσεις padding για κινητές συσκευές */
-        .mobile-px-small {
-          padding-left: 12px !important;
-          padding-right: 12px !important;
-        }
-        
-        /* Διορθώσεις για το contact section */
-        .contact-container > div {
-          padding: 16px !important;
-        }
-        
-        /* Διορθώσεις για το footer σε mobile */
-        .footer-section {
-          padding: 16px;
-        }
-        
-        /* ΑΠΌΚΡΥΨΗ ΣΥΓΚΕΚΡΙΜΈΝΩΝ ΚΑΡΤΏΝ ΤΟΥ HERO SECTION ΓΙΑ ΚΙΝΗΤΈΣ ΣΥΣΚΕΥΈΣ */
         .hero-card-construction-management,
         .hero-card-architectural-design {
           display: none !important;
@@ -411,7 +329,7 @@ const Home = () => {
       }
     `;
 
-    // Δημιουργία και προσθήκη του στοιχείου <style> για τις mobile διορθώσεις
+    // Δημιουργία και προσθήκη του στοιχείου <style>
     const styleElement = document.createElement('style');
     styleElement.innerHTML = mobileCss;
     document.head.appendChild(styleElement);
