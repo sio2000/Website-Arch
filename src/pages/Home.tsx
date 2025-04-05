@@ -320,14 +320,17 @@ const Home = () => {
       : 'IN-MAVRIDIS - Architectural Office & Technical Services Komotini';
 
     // Κώδικας που θα εκτελείται μετά την αρχική απόδοση για να εντοπίσει 
-    // και να αποκρύψει την κάρτα "Διαχείριση Εργοταξίου & Έργων"
-    const hideConstructionCard = () => {
+    // και να αποκρύψει τις κάρτες
+    const hideCards = () => {
       // Εντοπίζουμε όλες τις επικεφαλίδες h3 στο έγγραφο
       const headers = document.querySelectorAll('h3');
       
-      // Αναζητούμε την επικεφαλίδα με το συγκεκριμένο κείμενο
+      // Αναζητούμε τις επικεφαλίδες με τα συγκεκριμένα κείμενα
       headers.forEach(header => {
-        if (header.textContent?.includes('Διαχείριση Εργοταξίου & Έργων')) {
+        if (
+          header.textContent?.includes('Διαχείριση Εργοταξίου & Έργων') || 
+          header.textContent?.includes('Αρχιτεκτονικός Σχεδιασμός & Άδειες')
+        ) {
           // Βρίσκουμε το γονικό div (κάρτα) και προσθέτουμε τις κλάσεις απόκρυψης
           const card = header.closest('div[class*="rounded"]');
           if (card) {
@@ -338,7 +341,7 @@ const Home = () => {
     };
 
     // Εκτελούμε τη συνάρτηση μετά την απόδοση της σελίδας
-    const timer = setTimeout(hideConstructionCard, 500);
+    const timer = setTimeout(hideCards, 500);
     
     // Καθαρισμός του timer όταν το component unmounts
     return () => clearTimeout(timer);
